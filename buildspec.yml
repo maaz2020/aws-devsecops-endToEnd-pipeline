@@ -13,14 +13,6 @@ phases:
 #Static Application Security Scan (SAST scan) using SonarCloud
      - mvn verify sonar:sonar -Dsonar.projectKey=awsdevsecjavaproject -Dsonar.organization=awsdevsecjavaproject -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$TOKEN 
 
-#Quality Gates for Static Application Security Scan(SAST) using SonarCloud
-
-     - sleep 5
-     - |- 
-        quality_status=$(curl -s -u $TOKEN: https://sonarcloud.io/api/qualitygates/project_status?projectKey=awsdevsecjavaproject | jq -r '.projectStatus.status')
-        echo "SonarCloud analysistatus is $quality_status"; 
-#        if [ $quality_status = "ERROR" ] ; then exit 1;fi
-
 #Software Composition Analysis Scan (SCA scan) using Snyk
 
      - |-
