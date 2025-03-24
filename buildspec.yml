@@ -10,6 +10,7 @@ phases:
       java: latest
     commands:
       - apt-get update && apt-get -y install wget default-jdk maven
+
   build:
     commands:
       # Static Application Security Scan (SAST scan) using SonarCloud
@@ -19,10 +20,9 @@ phases:
       - mvn snyk:test -fn
 
       # Dynamic Application Security Scan (DAST scan) using OWASP ZAP
-       - |-
+      - |
         apt-get update
-        apt-get -y install wget
-        apt-get -y install default-jdk
+        apt-get -y install wget default-jdk
         wget https://github.com/zaproxy/zaproxy/releases/download/v2.16.0/ZAP_2.16.0_Linux.tar.gz
         tar -xvf ZAP_2.16.0_Linux.tar.gz
         cd ZAP_2.16.0
